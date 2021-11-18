@@ -166,7 +166,7 @@ def create_filters(date=None, start_date=None, end_date=None,
         filters.append(filter)
     
     if diameter_max is not None:
-        filter = DiameterFilter(operator.le, diameter_min)
+        filter = DiameterFilter(operator.le, diameter_max)
         filters.append(filter)
     
     if velocity_min is not None:
