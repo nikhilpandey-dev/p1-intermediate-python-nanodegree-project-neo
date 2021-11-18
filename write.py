@@ -12,8 +12,8 @@ You'll edit this file in Part 4.
 """
 import csv
 import json
-
-
+from models import NearEarthObject, CloseApproach
+from helpers import datetime_to_str
 def write_to_csv(results, filename):
     """Write an iterable of `CloseApproach` objects to a CSV file.
 
@@ -26,6 +26,30 @@ def write_to_csv(results, filename):
     """
     fieldnames = ('datetime_utc', 'distance_au', 'velocity_km_s', 'designation', 'name', 'diameter_km', 'potentially_hazardous')
     # TODO: Write the results to a CSV file, following the specification in the instructions.
+
+    with open(filename, 'w') as outfile:
+        writer = csv.DictWriter(outfile, fieldnames=list(fieldnames))
+        writer.writeheader()
+        for element in results:
+            output_row_dict = dict()
+            output_row_dict['datetime_utc'] = datetime_to_str(element.time)
+            output_row_dict['distance_au'] = element.distance
+            output_row_dict['velocity_km_s'] = element.velocity
+            output_row_dict['designation'] = element.designation
+            if element.neo.name is None:
+                output_row_dict['name'] = ''
+            else:
+                output_row_dict['name'] = element.neo.name
+            if element.neo.diameter:
+                output_row_dict['diameter_km'] = element.neo.diameter
+            else:
+                output_row_dict['diameter_km'] = 'nan'
+            if element.neo.hazardous:
+                output_row_dict['potentially_hazardous'] = 'True'
+            else:
+                output_row_dict['potentially_hazardous'] = 'False'
+            writer.writerow(output_row_dict)
+
 
 
 def write_to_json(results, filename):
@@ -40,3 +64,26 @@ def write_to_json(results, filename):
     :param filename: A Path-like object pointing to where the data should be saved.
     """
     # TODO: Write the results to a JSON file, following the specification in the instructions.
+    output_rows_list = list()
+    with open(filename, 'w') as outfile:
+        output_row_dict = dict()
+        for element in results:
+            output_row_dict = dict()
+            output_row_dict['datetime_utc'] = datetime_to_str(element.time)
+            output_row_dict['distance_au'] = element.distance
+            output_row_dict['velocity_km_s'] = element.velocity
+            output_neo_dict = dict()
+            output_neo_dict['designation'] = element.neo.designation
+            if element.neo.name is None:
+                output_neo_dict['name'] = ''
+            else:
+                output_row_dict['name'] = element.neo.name
+            output_neo_dict['diameter_km'] = element.neo.diameter
+            output_neo_dict['potentially_hazardous'] = element.neo.hazardous
+            output_row_dict['neo'] = output_neo_dict
+            output_rows_list.append(output_row_dict)
+        
+        json.dump(output_rows_list, outfile, allow_nan=True)
+
+
+
