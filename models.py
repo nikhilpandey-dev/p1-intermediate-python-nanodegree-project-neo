@@ -42,26 +42,10 @@ class NearEarthObject:
             self.name = None
         else:
             self.name = name
-        # if diameter == '':
-        #     self.diameter = float('nan')
-        # else:
-        # if diameter == '':
-        #     self.diameter = float('nan')
-        # else:
-        # if diameter:
-        #     self.diameter = float(diameter)
-        # else:
-        #     self.diameter = float('nan')
-        # try:
-        #     self.diameter = float(diameter)
-        # except ValueError:
-        #     self.diameter = float('nan')
-
-        if diameter:
-            self.diameter = diameter
+        if diameter == '':
+            self.diameter = float('nan')
         else:
-            diameter = float('nan')
-
+            self.diameter = float(diameter)
         if hazardous == 'Y':
             self.hazardous = True
         else:
@@ -73,12 +57,7 @@ class NearEarthObject:
     @property
     def fullname(self):
         """Return a representation of the full name of this NEO."""
-        name = ''
-        if self.name is None:
-            name = ''
-        else:
-            name = self.name
-        return f"{self.designation} {name}"
+        return f"{self.designation} {self.name}"
 
     def __str__(self):
         """Return `str(self)`."""
@@ -108,38 +87,23 @@ class CloseApproach:
     private attribute, but the referenced NEO is eventually replaced in the
     `NEODatabase` constructor.
     """
-    def __init__(self, designation, time=None, distance=0.0, velocity=0.0, neo:NearEarthObject=None):
+    def __init__(self, designation, time=None, distance=0.0, velocity=0.0, neo=None):
         """Create a new `CloseApproach`.
 
         :param info: A dictionary of excess keyword arguments supplied to the constructor.
         """
-        """ Empty strings are "falsy" (python 2 or python 3 reference), which means they are considered false in a Boolean context, so you can just do this: if not myString: This is the preferred way if you know that your variable is a string.So it means that I have to check for value and else set the value to float nan. """
         # You should coerce these values to their appropriate data type and handle any edge cases.
         # The `cd_to_datetime` function will be useful.
         self.designation = designation
         self.time = cd_to_datetime(time)
-        
-        if distance:
-            self.distance = float(distance)
-        else:
+        if distance == '':
             self.distance = float('nan')
-        # try:
-        #     self.distance = float(distance)
-        # except ValueError:
-        #     self.distance = float('nan')
-        
-        # try:
-        #     self.velocity = float(velocity)
-        # except ValueError:
-        #     self.velocity = float('nan')
-
-        # self.distance = float(distance)
-        # self.velocity = float(velocity)
-
-        if velocity:
-            self.velocity = float(velocity)
         else:
+            self.distance = float(distance)
+        if velocity == '':
             self.velocity = float('nan')
+        else:
+            self.velocity = float(velocity)
 
         # Create an attribute for the referenced NEO, originally None.
         self.neo = neo
