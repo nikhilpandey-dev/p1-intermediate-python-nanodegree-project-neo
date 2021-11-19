@@ -17,12 +17,12 @@ from models import NearEarthObject, CloseApproach
 class NEODatabase:
     """A database of near-Earth objects & close approaches.
 
-    
     A `NEODatabase` contains a collection of NEOs and a collection of close
     approaches. It additionally maintains a few auxiliary data structures to
     help fetch NEOs by primary designation or by name and to help speed up
     querying for close approaches that match criteria.
     """
+
     def __init__(self, neos: NearEarthObject, approaches: CloseApproach):
         """Create a new `NEODatabase`.
 
