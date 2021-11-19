@@ -27,7 +27,7 @@ class UnsupportedCriterionError(NotImplementedError):
 
 class AttributeFilter:
     """A general superclass for filters on comparable attributes.
-    
+
     An `AttributeFilter` represents the search criteria pattern
      comparing some attribute of a close approach (or its attached NEO)
       to a reference value. It essentially functions as a callable
@@ -42,15 +42,17 @@ class AttributeFilter:
     """
 
     def __init__(self, op, value):
-        """Construct a new `AttributeFilter` from an binary predicate and a reference value.
+        """Construct a new `AttributeFilter`.
 
-        The reference value will be supplied as the second (right-hand side)
+        The new AttributeFilter is created from an binary
+         predicate & a reference value. The reference value will
+          be supplied as the second (right-hand side)
         argument to the operator function. For example, an `AttributeFilter`
         with `op=operator.le` and `value=10` will, when called on an approach,
         evaluate `some_attribute <= 10`.
 
         :param op: A 2-argument predicate comparator (such as `operator.le`).
-        :param value: The reference value to compare against.
+        :param value: The reference value to compare against.)
         """
         self.op = op
         self.value = value
@@ -79,7 +81,12 @@ class AttributeFilter:
 
 
 class DateFilter(AttributeFilter):
-    """Subclass of AttributeFilter.Description: It override the `get` method of its superclass to obtain filter on dates."""
+    """Subclass of AttributeFilter.
+
+    Description:
+    It override the `get` method of its superclass to
+     obtain filter on dates.
+    """
 
     @classmethod
     def get(cls, approach: CloseApproach):
@@ -91,9 +98,10 @@ class DistanceFilter(AttributeFilter):
     """Subclass of AttributeFilter.
 
     Description:
-    It override the `get` method of its superclass to obtain filter on distance.
+    It override the `get` method of its superclass
+     to obtain filter on distance.
     """
-    
+
     @classmethod
     def get(cls, approach: CloseApproach):
         """Return distance of CloseApproach."""
@@ -101,7 +109,12 @@ class DistanceFilter(AttributeFilter):
 
 
 class VelocityFilter(AttributeFilter):
-    """Subclass of AttributeFilter, which override the `get` method of its superclass to obtain filter on velocity."""
+    """Subclass of AttributeFilter.
+
+    Description:
+    This subclass overrides the `get` method of its superclass
+     to obtain filter on velocity.
+    """
 
     @classmethod
     def get(cls, approach: CloseApproach):
@@ -110,7 +123,12 @@ class VelocityFilter(AttributeFilter):
 
 
 class DiameterFilter(AttributeFilter):
-    """Subclass of AttributeFilter, which override the `get` method of its superclass to obtain filter on diameter."""
+    """Subclass of AttributeFilter.
+
+    Description:
+    This subclass of AttributeFilter overrides the `get` method
+     of its superclass to obtain filter on diameter.
+    """
 
     @classmethod
     def get(cls, approach: CloseApproach):
@@ -119,7 +137,13 @@ class DiameterFilter(AttributeFilter):
 
 
 class HazardousFilter(AttributeFilter):
-    """Subclass of AttributeFilter, which override the `get` method of its superclass to obtain filter on the hazardous state of neo."""
+    """Subclass of AttributeFilter.
+
+    Description:
+    This subclass of AttributeFilter overrides the `get` method
+     of its superclass to obtain information about
+      hazardous state of the neo of the CloseApproach.
+    """
 
     @classmethod
     def get(cls, approach: CloseApproach):
