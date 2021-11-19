@@ -80,36 +80,48 @@ class AttributeFilter:
 
 
 class Designation(AttributeFilter):
+    """ Subclass of AttributeFilter, which override the `get` method
+     of its superclass to obtain filter on designation."""
     @classmethod
     def get(cls, approach: CloseApproach):
         return approach.neo.designation
 
 
 class DateFilter(AttributeFilter):
+    """ Subclass of AttributeFilter, which override the `get` method
+     of its superclass to obtain filter on dates."""
     @classmethod
     def get(cls, approach: CloseApproach):
         return approach.time.date()
 
 
 class DistanceFilter(AttributeFilter):
+    """ Subclass of AttributeFilter, which override the `get` method
+     of its superclass to obtain filter on distance."""
     @classmethod
     def get(cls, approach: CloseApproach):
         return approach.distance
 
 
 class VelocityFilter(AttributeFilter):
+    """ Subclass of AttributeFilter, which override the `get` method
+     of its superclass to obtain filter on velocity."""
     @classmethod
     def get(cls, approach: CloseApproach):
         return approach.velocity
 
 
 class DiameterFilter(AttributeFilter):
+    """ Subclass of AttributeFilter, which override the `get` method
+     of its superclass to obtain filter on diameter."""
     @classmethod
     def get(cls, approach: CloseApproach):
         return approach.neo.diameter
 
 
 class HazardousFilter(AttributeFilter):
+    """ Subclass of AttributeFilter, which override the `get` method
+     of its superclass to obtain filter on the hazardous state of neo."""
     @classmethod
     def get(cls, approach: CloseApproach):
         return approach.neo.hazardous
