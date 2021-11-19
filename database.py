@@ -10,7 +10,6 @@ Under normal circumstances, the main module creates one NEODatabase from the
 data on NEOs and close approaches extracted by `extract.load_neos` and
 `extract.load_approaches`.
 
-You'll edit this file in Tasks 2 and 3.
 """
 from extract import load_neos, load_approaches
 from models import NearEarthObject, CloseApproach

@@ -12,7 +12,6 @@ The main module calls these functions with the arguments provided
  at the command line, and uses the resulting collections to
   build an `NEODatabase`.
 
-You'll edit this file in Task 2.
 """
 import csv
 import json
