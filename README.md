@@ -17,3 +17,7 @@ The part of the Python it touches are:
 1. Writing docstrings and proper docuemntation, which adhere to the following PEP's:
     1. Making a python script adhere to PEP 8, which provides guidelines and best practices on how to write Python code, by using `pycodestyle`.
     1. Making a python script adhere to PEP 257, which aims to standardize the high-level structure of docstrings: what they should contain, and how to say it (without touching on any markup syntax within docstrings), by using `pydocstyle`.
+
+## A Tip
+
+> Making a python script simultaneously adhere to `pydocstyle` and `pycodestyle` is a challenge. But one thing which greatly helps is that in your docstrings write the first line as summary of the function or class within 79 characters including `.`
