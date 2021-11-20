@@ -21,3 +21,6 @@ The part of the Python it touches are:
 ## A Tip
 
 > Making a python script simultaneously adhere to `pydocstyle` and `pycodestyle` is a challenge. But one thing which greatly helps is that in your docstrings write the first line as summary of the function or class within 79 characters including `.`
+>
+>Then after leaving one blank line (for that using new line shortcut of your coditor is better than manually pressing `enter`) you can write whatever you want and at that time focusing only on `pycodestyle` which is slightly easier than `pydocstyle` and the main reason is that **our understanding of line and indentation is quite different than what system understands due to indentation settings, tab settings, line settings in the various code editors we use**.So in this way you will have `TODO` from `pycodestyle` which you understand and can rectify instead of banging your head against the wall on `pydocstyle` `TODO`s of 1 blank line, which you see is there but the system doesn't recognize.
+>
